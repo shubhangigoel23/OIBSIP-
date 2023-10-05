@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Authentication</title>
+
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Your provided CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgb(27, 169, 180);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login_form_container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 2px solid blue;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .login_form {
+            text-align: center;
+        }
+
+        h2 {
+            color: #070ad8;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0a5adb;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0404ef;
+        }
+
+        #message {
+            color: #ff0000;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login_form_container">
+        <div class="login_form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if the username and password match
+            if (checkCredentials(username, password)) {
+                // Store the username in local storage
+                localStorage.setItem('username', username);
+
+                // Redirect to the secured page
+                window.location.href = 'secured.html';
+            } else {
+                // Display an error message
+                document.getElementById('message').innerText = 'Invalid username or password.';
+            }
+        }
+
+        function checkCredentials(username, password) {
+            // Replace this with your authentication logic
+            // In a real application, you would verify the credentials against a server or a database
+            return (username === 'admin' && password === 'admin@123') ||
+                   (username === 'user1' && password === 'start@123');
+        }
+    </script>
+</body>
+</html>
